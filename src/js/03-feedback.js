@@ -31,7 +31,16 @@ function onFormInput() {
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+
+  if (email.value === '' || message.value === '') {
+    return alert('Заполните все поля');
+  }
+
+  const formData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  console.log(formData);
+
   localStorage.removeItem(STORAGE_KEY);
   form.reset();
+  delete formData.email;
+  delete formData.message;
 }
